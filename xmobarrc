@@ -1,0 +1,25 @@
+Config { font = "xft:Source Code Pro:size=6"
+       , additionalFonts = []
+       , borderColor = "black"
+       , bgColor = "black"
+       , fgColor = "white"
+       , alpha = 255
+       , position = Top
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , textOutputFormat = Ansi
+       , commands = [ Run Weather "EHGG" ["-t","<skyCondition> <tempC>C <windCardinal> <rh>% <pressure>mb"] 36000
+                    , Run Network "enp0s3" ["-L","0","-H","32",
+                                          "--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run XMonadLog
+                    , Run Locks
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%cpu% | %memory% | %enp0s3% | %XMonadLog%} %date% %locks%{| %EHGG%"
+       }
